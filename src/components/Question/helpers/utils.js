@@ -21,14 +21,10 @@ export const randomizeAnswers = (array) => {
 export const replaceHtmlCharacters = (text) => {
   let formattedText = '';
 
-  formattedText = text
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
-    .replace(/&amp;/g, '&')
-    .replace(/&trade;/g, '™')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '<')
-    .replace(/&ldquot;/g, '"');
+  const span = document.createElement('span');
+  span.innerHTML = text;
+  formattedText = span.innerText;
+  span.remove();
 
   return formattedText;
 };
