@@ -3,7 +3,7 @@ import './Question.scss';
 import AnswerCard from './AnswerCard/AnswerCard';
 import { replaceRegexCharacters } from './helpers/utils';
 
-const Question = ({ question, answers }) => {
+const Question = ({ question }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
 
@@ -13,10 +13,10 @@ const Question = ({ question, answers }) => {
   };
 
   const renderAnswers = () => {
-    return answers.map((answer) => (
+    return question.answers.map((answer) => (
       <AnswerCard
-        key={answer}
-        answerText={replaceRegexCharacters(answer)}
+        key={answer.text}
+        answerText={answer.text}
         handleAnswerClick={handleAnswerClick}
       />
     ));

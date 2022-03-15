@@ -11,7 +11,6 @@ import {
   selectQuestionList,
 } from '../../features/QuestionList/questionListSlice';
 import { selectCurrentScore } from '../../features/User/userSlice';
-import { randomizeAnswers } from '../../components/Question/helpers/utils';
 import { useDispatch } from 'react-redux';
 
 const QuestionPage = () => {
@@ -21,13 +20,6 @@ const QuestionPage = () => {
   const questionIndex = useSelector(selectCurrentQuestionIndex);
 
   let currentQuestion = questionList[questionIndex];
-  let currentAnswers = [];
-  if (currentQuestion) {
-    currentAnswers = randomizeAnswers([
-      ...currentQuestion.incorrect_answers,
-      currentQuestion.correct_answer,
-    ]);
-  }
 
   const userScore = useSelector(selectCurrentScore);
   const areQuestionsLoading = useSelector(selectAreQuestionsLoading);
@@ -53,9 +45,7 @@ const QuestionPage = () => {
   return (
     <div className='question-page'>
       {questionList && questionNumber()}
-      {!areQuestionsLoading && (
-        <Question question={currentQuestion} answers={currentAnswers} />
-      )}
+      {!areQuestionsLoading && <Question question={currentQuestion} />}
       <div className='navigation-buttons'>
         <Button onClick={handlePrevious} isDisabled={!(questionIndex > 0)}>
           Previous
