@@ -21,11 +21,13 @@ function* workGetQuestionListFetch() {
       const incorrectAnswers = question.incorrect_answers.map((answer) => ({
         text: replaceHtmlCharacters(answer),
         correct: false,
+        isSelected: false,
       }));
 
       const correctAnswer = {
         text: replaceHtmlCharacters(question.correct_answer),
         correct: true,
+        isSelected: false,
       };
 
       const answers = randomizeAnswers([...incorrectAnswers, correctAnswer]);

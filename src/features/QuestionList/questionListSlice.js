@@ -47,6 +47,9 @@ export const {
 export const selectQuestionList = (state) => state.questionList.questions;
 export const selectCurrentQuestionIndex = (state) =>
   state.questionList.currentQuestionIndex;
+export const selectCurrentQuestion = (state) =>
+  state.questionList.questions[state.questionList.currentQuestionIndex];
+
 export const selectAreQuestionsLoading = (state) =>
   state.questionList.isLoading;
 export const selectIsQuestionsError = (state) =>
