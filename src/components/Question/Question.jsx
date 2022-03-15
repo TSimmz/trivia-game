@@ -4,6 +4,7 @@ import AnswerCard from './AnswerCard/AnswerCard';
 import { replaceHtmlCharacters } from './helpers/utils';
 
 const Question = ({ question }) => {
+  const [selectedAnswer, setSelectedAnswer] = useState({});
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
 
@@ -11,19 +12,33 @@ const Question = ({ question }) => {
     setIsQuestionAnswered(false);
   }, [question]);
 
-  const handleAnswerClick = (isCorrect) => {
+  const handleAnswerClick = (answer) => {
+    setSelectedAnswer(answer);
     setIsQuestionAnswered(true);
-    setIsAnswerCorrect(isCorrect);
+    setIsAnswerCorrect(answer.correct);
   };
 
   const renderAnswers = () => {
-    return question.answers.map((answer) => (
-      <AnswerCard
-        key={answer.text}
-        answer={answer}
-        handleAnswerClick={handleAnswerClick}
-      />
-    ));
+    return question.answers.map((answer) => {
+      if (selectedAnswer && selectedAnswer.text === answer.text) {
+        return (
+          <AnswerCard
+            key={answer.text}
+            answer={answer}
+            background={`${answer.correct ? 'correct-bkgd' : 'incorrect-bkgd'}`}
+            handleAnswerClick={handleAnswerClick}
+          />
+        );
+      }
+      return (
+        <AnswerCard
+          key={answer.text}
+          answer={answer}
+          background={''}
+          handleAnswerClick={handleAnswerClick}
+        />
+      );
+    });
   };
 
   return (

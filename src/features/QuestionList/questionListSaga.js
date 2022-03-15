@@ -42,8 +42,6 @@ function* workGetQuestionListFetch() {
     });
   }
 
-  console.log(questions);
-
   // Dispatch the action
   yield put(getQuestionListSuccess(questions));
 }
