@@ -1,49 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Question.scss';
 import AnswerCard from './AnswerCard/AnswerCard';
-import Button from '../Button/Button';
-import data from './test-question.json';
 
-const Question = ({ questionIndex }) => {
-  const question = data.results[questionIndex];
-  const answers = [...question.incorrect_answers, question.correct_answer];
-  let score = 4;
+const Question = ({ question, answers }) => {
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+  const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
 
-  const randomizeAnswers = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
+  const formattedQuestion = question.question.replace(/&quot;/g, '\\"');
+  const formattedAnswers = answers.forEach((answer) =>
+    answer.replace(/&quot;/g, '\\"')
+  );
 
-    // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
+  const handleAnswerClick = (answer) => {
+    setIsQuestionAnswered(true);
+    setIsAnswerCorrect(answer === question.correct_answer);
   };
 
   const renderAnswers = () => {
-    const randomAnswers = randomizeAnswers(answers);
-
-    return randomAnswers.map((answer) => <AnswerCard answerText={answer} />);
-  };
-
-  const questionNumber = () => {
-    return (
-      <p className='question-number'>{`${questionIndex}/${data.results.length}`}</p>
-    );
+    return answers.map((answer) => (
+      <AnswerCard
+        key={answer}
+        answerText={answer}
+        handleAnswerClick={handleAnswerClick}
+      />
+    ));
   };
 
   return (
     <div className='question-container'>
-      {questionNumber()}
       <p>
         <span className='green-text bold-text'>Category:</span>{' '}
         {question.category}
@@ -54,14 +38,9 @@ const Question = ({ questionIndex }) => {
       </p>
       <h1>{question.question}</h1>
       {renderAnswers()}
-
-      {/* correct or incorrect */}
-
-      <div className='navigation-buttons'>
-        <Button>Previous</Button>
-        <Button>Next</Button>
-      </div>
-      <p className='score'>{`Score: ${score}`}</p>
+      <p className={`answer ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
+        {isQuestionAnswered && (isAnswerCorrect ? 'Correct!' : 'Incorrect!')}
+      </p>
     </div>
   );
 };

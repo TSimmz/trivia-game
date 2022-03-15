@@ -2,4 +2,37 @@
 
 .question-page {
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 3rem;
+  height: 850px;
+  position: relative;
+
+  .question-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+    margin-bottom: 2rem;
+    position: absolute;
+  }
+
+  .navigation-buttons {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    padding: 0 2.5rem;
+    bottom: 3rem;
+  }
+
+  .score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+    margin-top: 1.5rem;
+    position: absolute;
+    bottom: 0;
+  }
 }
