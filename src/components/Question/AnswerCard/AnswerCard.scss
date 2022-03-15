@@ -1,0 +1,14 @@
+@import '../../../variables.scss';
+
+.card {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 0.9rem;
+  color: $light-color;
+  background-color: $card-background;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
