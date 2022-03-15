@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import './Question.scss';
 import AnswerCard from './AnswerCard/AnswerCard';
+import { replaceRegexCharacters } from './helpers/utils';
 
 const Question = ({ question, answers }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
-
-  const formattedQuestion = question.question.replace(/&quot;/g, '\\"');
-  const formattedAnswers = answers.forEach((answer) =>
-    answer.replace(/&quot;/g, '\\"')
-  );
 
   const handleAnswerClick = (answer) => {
     setIsQuestionAnswered(true);
@@ -20,7 +16,7 @@ const Question = ({ question, answers }) => {
     return answers.map((answer) => (
       <AnswerCard
         key={answer}
-        answerText={answer}
+        answerText={replaceRegexCharacters(answer)}
         handleAnswerClick={handleAnswerClick}
       />
     ));
@@ -36,7 +32,7 @@ const Question = ({ question, answers }) => {
         <span className='green-text bold-text'>Difficulty:</span>{' '}
         {question.difficulty.toUpperCase()}
       </p>
-      <h1>{question.question}</h1>
+      <h1>{replaceRegexCharacters(question.question)}</h1>
       {renderAnswers()}
       <p className={`answer ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
         {isQuestionAnswered && (isAnswerCorrect ? 'Correct!' : 'Incorrect!')}

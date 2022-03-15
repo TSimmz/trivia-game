@@ -17,3 +17,17 @@ export const randomizeAnswers = (array) => {
 
   return array;
 };
+
+export const replaceRegexCharacters = (text) => {
+  let formattedText = '';
+
+  formattedText = text
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&trade;/g, '™')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '<');
+
+  return formattedText;
+};
