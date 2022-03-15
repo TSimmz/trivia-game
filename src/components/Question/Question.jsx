@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Question.scss';
 import AnswerCard from './AnswerCard/AnswerCard';
-import { replaceRegexCharacters } from './helpers/utils';
+import { replaceHtmlCharacters } from './helpers/utils';
 
 const Question = ({ question }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
 
-  const handleAnswerClick = (answer) => {
+  useEffect(() => {
+    setIsQuestionAnswered(false);
+  }, [question]);
+
+  const handleAnswerClick = (isCorrect) => {
     setIsQuestionAnswered(true);
-    setIsAnswerCorrect(answer === question.correct_answer);
+    setIsAnswerCorrect(isCorrect);
   };
 
   const renderAnswers = () => {
     return question.answers.map((answer) => (
       <AnswerCard
         key={answer.text}
-        answerText={answer.text}
+        answer={answer}
         handleAnswerClick={handleAnswerClick}
       />
     ));
@@ -32,7 +36,7 @@ const Question = ({ question }) => {
         <span className='green-text bold-text'>Difficulty:</span>{' '}
         {question.difficulty.toUpperCase()}
       </p>
-      <h1>{replaceRegexCharacters(question.question)}</h1>
+      <h1>{replaceHtmlCharacters(question.question)}</h1>
       {renderAnswers()}
       <p className={`answer ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
         {isQuestionAnswered && (isAnswerCorrect ? 'Correct!' : 'Incorrect!')}

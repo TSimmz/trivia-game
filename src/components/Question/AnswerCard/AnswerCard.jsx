@@ -1,16 +1,16 @@
 import React from 'react';
 import './AnswerCard.scss';
 
-const AnswerCard = ({ answerText, handleAnswerClick }) => {
+const AnswerCard = ({ answer, handleAnswerClick }) => {
   const handleClick = (event) => {
     event.preventDefault();
 
-    handleAnswerClick(answerText);
+    handleAnswerClick(answer.correct);
   };
 
   return (
     <button className='card' onClick={handleClick}>
-      {answerText}
+      {answer.text}
     </button>
   );
 };

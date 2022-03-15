@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getQuestionListSuccess } from './questionListSlice';
 import {
   randomizeAnswers,
-  replaceRegexCharacters,
+  replaceHtmlCharacters,
 } from '../../components/Question/helpers/utils';
 
 // Handler saga
@@ -19,12 +19,12 @@ function* workGetQuestionListFetch() {
   if (questionListJson) {
     questions = questionListJson.results.map((question) => {
       const incorrectAnswers = question.incorrect_answers.map((answer) => ({
-        text: replaceRegexCharacters(answer),
+        text: replaceHtmlCharacters(answer),
         correct: false,
       }));
 
       const correctAnswer = {
-        text: replaceRegexCharacters(question.correct_answer),
+        text: replaceHtmlCharacters(question.correct_answer),
         correct: true,
       };
 
@@ -33,7 +33,7 @@ function* workGetQuestionListFetch() {
       return {
         category: question.category,
         difficulty: question.difficulty,
-        type: replaceRegexCharacters(question.type),
+        type: replaceHtmlCharacters(question.type),
         question: question.question,
         answers: answers,
       };

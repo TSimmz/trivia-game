@@ -18,7 +18,7 @@ export const randomizeAnswers = (array) => {
   return array;
 };
 
-export const replaceRegexCharacters = (text) => {
+export const replaceHtmlCharacters = (text) => {
   let formattedText = '';
 
   formattedText = text
@@ -27,7 +27,8 @@ export const replaceRegexCharacters = (text) => {
     .replace(/&amp;/g, '&')
     .replace(/&trade;/g, '™')
     .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '<');
+    .replace(/&gt;/g, '<')
+    .replace(/&ldquot;/g, '"');
 
   return formattedText;
 };
