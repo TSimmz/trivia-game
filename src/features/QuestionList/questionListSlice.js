@@ -5,7 +5,9 @@ export const questionListSlice = createSlice({
   initialState: {
     questions: [],
     currentQuestionIndex: 0,
-    currentScore: 0,
+    currentQuestion: {},
+    isLoading: false,
+    hasLoadingError: false,
   },
   reducers: {
     nextQuestion: (state) => {
@@ -17,14 +19,37 @@ export const questionListSlice = createSlice({
     resetQuestionIndex: (state) => {
       state.currentQuestionIndex = 0;
     },
+    getQuestionListFetch: (state) => {
+      state.isLoading = true;
+      state.hasLoadingError = false;
+    },
+    getQuestionListSuccess: (state, action) => {
+      state.isLoading = false;
+      state.hasLoadingError = false;
+      state.questions = action.payload;
+    },
+    getQuestionListFailure: (state) => {
+      state.isLoading = false;
+      state.hasLoadingError = true;
+    },
   },
 });
 
-export const { nextQuestion, previousQuestion, resetQuestionIndex } =
-  questionListSlice.actions;
+export const {
+  nextQuestion,
+  previousQuestion,
+  resetQuestionIndex,
+  getQuestionListFetch,
+  getQuestionListSuccess,
+  getQuestionListFailure,
+} = questionListSlice.actions;
 
 export const selectQuestionList = (state) => state.questionList.questions;
 export const selectCurrentQuestionIndex = (state) =>
   state.questionList.currentQuestionIndex;
+export const selectAreQuestionsLoading = (state) =>
+  state.questionList.isLoading;
+export const selectIsQuestionsError = (state) =>
+  state.questionList.hasLoadingError;
 
 export default questionListSlice.reducer;
