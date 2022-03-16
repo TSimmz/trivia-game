@@ -4,6 +4,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     currentScore: 0,
+    totalScore: 0,
     isGameInProgress: false,
     isGameFinished: false,
   },
@@ -41,6 +42,7 @@ export const {
 } = userSlice.actions;
 
 export const selectCurrentScore = (state) => state.user.currentScore;
+export const selectTotalScore = (state) => state.user.totalScore;
 export const selectIsGameProgress = (state) => state.user.isGameInProgress;
 export const selectIsGameFinish = (state) => state.user.isGameFinished;
 

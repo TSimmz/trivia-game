@@ -1,1 +1,34 @@
 @import '../../variables.scss';
+@import '../../variables.scss';
+
+.game-over-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .game-over-text {
+    font-size: 1.33rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .play-again {
+    border: 3px solid $light-green;
+    color: #fff;
+    background-color: transparent;
+    font-size: 1.3rem;
+    margin: 6rem 0 1.5rem;
+  }
+
+  .save {
+    font-size: 1.3rem;
+  }
+}
