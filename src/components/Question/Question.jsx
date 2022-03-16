@@ -1,11 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCurrentQuestion } from '../../features/QuestionList/questionListSlice';
-import {
-  addToScoreEasy,
-  addToScoreHard,
-  addToScoreMed,
-} from '../../features/User/userSlice';
+import { addToUserScore, addToTotalScore } from '../../features/User/userSlice';
 import './Question.scss';
 
 const Question = ({ question }) => {
@@ -17,22 +13,22 @@ const Question = ({ question }) => {
     q.isUserCorrect = q.userChoice.correct;
     dispatch(updateCurrentQuestion(q));
 
+    const questionValue = getQuestionValue(q.difficulty);
     if (q.isUserCorrect) {
-      updateUserScore(q.difficulty);
+      dispatch(addToUserScore(questionValue));
     }
+
+    dispatch(addToTotalScore(questionValue));
   };
 
-  const updateUserScore = (difficulty) => {
+  const getQuestionValue = (difficulty) => {
     switch (difficulty.toUpperCase()) {
       case 'EASY':
-        dispatch(addToScoreEasy());
-        break;
+        return 1;
       case 'MEDIUM':
-        dispatch(addToScoreMed());
-        break;
+        return 2;
       case 'HARD':
-        dispatch(addToScoreHard());
-        break;
+        return 3;
       default:
         break;
     }

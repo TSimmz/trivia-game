@@ -8,8 +8,11 @@ export const userSlice = createSlice({
     isGameFinished: false,
   },
   reducers: {
-    addToScoreEasy: (state) => {
-      state.currentScore += 1;
+    addToUserScore: (state, action) => {
+      state.currentScore += action.payload;
+    },
+    addToTotalScore: (state, action) => {
+      state.totalScore += action.payload;
     },
     addToScoreMed: (state) => {
       state.currentScore += 2;
@@ -30,9 +33,8 @@ export const userSlice = createSlice({
 });
 
 export const {
-  addToScoreEasy,
-  addToScoreMed,
-  addToScoreHard,
+  addToUserScore,
+  addToTotalScore,
   clearScore,
   setGameProgress,
   setGameFinish,
