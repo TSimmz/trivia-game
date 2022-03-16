@@ -36,6 +36,7 @@ const Question = ({ question }) => {
 
   const renderAnswers = () => {
     return question.answers.map((answer) => {
+      // User selection
       if (question.userChoice && question.userChoice.text === answer.text) {
         return (
           <button
@@ -49,6 +50,20 @@ const Question = ({ question }) => {
           </button>
         );
       }
+      // Highlight the correct answer if incorrect
+      if (question.userChoice.text && answer.correct) {
+        return (
+          <button
+            id={answer.text}
+            key={answer.text}
+            className={`answer-button no-click correct-bkgd`}
+            onClick={handleAnswerClick}>
+            {answer.text}
+          </button>
+        );
+      }
+
+      // Return a normal button if not clicked
       return (
         <button
           id={answer.text}
