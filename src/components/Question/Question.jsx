@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { updateCurrentQuestion } from '../../features/QuestionList/questionListSlice';
 import './Question.scss';
 
 const Question = ({ question }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState({});
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
-  const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
-
-  useEffect(() => {
-    setIsQuestionAnswered(false);
-  }, [question]);
+  const dispatch = useDispatch();
 
   const handleAnswerClick = (event) => {
-    event.preventDefault();
-
-    // setSelectedAnswer(answer);
-    // setIsQuestionAnswered(true);
-    // setIsAnswerCorrect(answer.correct);
+    let q = { ...question };
+    q.userChoice = q.answers.find((answer) => answer.text === event.target.id);
+    q.isUserCorrect = q.userChoice.correct;
+    dispatch(updateCurrentQuestion(q));
   };
 
   const renderAnswers = () => {
     return question.answers.map((answer) => {
-      if (selectedAnswer && selectedAnswer.text === answer.text) {
+      if (question.userChoice && question.userChoice.text === answer.text) {
         return (
           <button
             id={answer.text}
             key={answer.text}
-            className={`answer-button ${
+            className={`answer-button no-click ${
               answer.correct ? 'correct-bkgd' : 'incorrect-bkgd'
             }`}
             onClick={handleAnswerClick}>
@@ -37,7 +32,7 @@ const Question = ({ question }) => {
         <button
           id={answer.text}
           key={answer.text}
-          className='answer-button'
+          className={`answer-button ${question.userChoice.text && 'no-click'}`}
           onClick={handleAnswerClick}>
           {answer.text}
         </button>
@@ -57,8 +52,12 @@ const Question = ({ question }) => {
       </p>
       <h1>{question.question}</h1>
       {renderAnswers()}
-      <p className={`answer ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
-        {isQuestionAnswered && (isAnswerCorrect ? 'Correct!' : 'Incorrect!')}
+      <p
+        className={`answer ${
+          question.isUserCorrect ? 'correct' : 'incorrect'
+        }`}>
+        {question.userChoice.text &&
+          (question.isUserCorrect ? 'Correct!' : 'Incorrect!')}
       </p>
     </div>
   );

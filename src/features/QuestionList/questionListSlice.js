@@ -18,6 +18,9 @@ export const questionListSlice = createSlice({
     resetQuestionIndex: (state) => {
       state.currentQuestionIndex = 0;
     },
+    updateCurrentQuestion: (state, action) => {
+      state.questions[action.payload.id] = action.payload;
+    },
     getQuestionListFetch: (state) => {
       state.isLoading = true;
       state.hasLoadingError = false;
@@ -38,6 +41,7 @@ export const {
   nextQuestion,
   previousQuestion,
   resetQuestionIndex,
+  updateCurrentQuestion,
   getQuestionListFetch,
   getQuestionListSuccess,
   getQuestionListFailure,

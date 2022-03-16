@@ -70,4 +70,8 @@
   .incorrect-bkgd {
     background-color: $incorrect-answer;
   }
+
+  .no-click {
+    pointer-events: none;
+  }
 }

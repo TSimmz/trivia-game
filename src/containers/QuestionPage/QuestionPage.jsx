@@ -58,7 +58,10 @@ const QuestionPage = () => {
         <button
           className='button'
           onClick={handleNext}
-          disabled={!(questionIndex < questionList.length - 1)}>
+          disabled={
+            !(questionIndex < questionList.length - 1) ||
+            !currentQuestion.userChoice.text
+          }>
           Next
         </button>
       </div>
