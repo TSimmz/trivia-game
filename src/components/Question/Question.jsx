@@ -43,7 +43,9 @@ const Question = ({ question }) => {
             id={answer.text}
             key={answer.text}
             className={`answer-button no-click ${
-              answer.correct ? 'correct-bkgd' : 'incorrect-bkgd'
+              answer.correct
+                ? 'correct-bkgd selected-correct'
+                : 'incorrect-bkgd selected-incorrect'
             }`}
             onClick={handleAnswerClick}>
             {answer.text}

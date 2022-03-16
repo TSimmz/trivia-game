@@ -55,6 +55,16 @@
     background-color: $incorrect-answer;
   }
 
+  .selected-correct {
+    outline: 2px solid $correct-answer;
+    outline-offset: 2px;
+  }
+
+  .selected-incorrect {
+    outline: 2px solid $incorrect-answer;
+    outline-offset: 2px;
+  }
+
   .no-click {
     pointer-events: none;
   }
