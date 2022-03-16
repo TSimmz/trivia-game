@@ -2,7 +2,6 @@ import React from 'react';
 import './LandingPage.scss';
 import { useDispatch } from 'react-redux';
 import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
-import Button from '../../components/Button/Button';
 import { setGameProgress } from '../../features/User/userSlice';
 
 const LandingPage = () => {
@@ -28,7 +27,9 @@ const LandingPage = () => {
         Get questions from all sorts of categories and difficulties. Shoot for
         the high score and compare against other players!
       </p>
-      <Button onClick={handlePlayButton}>Play!</Button>
+      <button className='button' onClick={handlePlayButton}>
+        Play!
+      </button>
     </div>
   );
 };

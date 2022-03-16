@@ -1,7 +1,6 @@
 import React from 'react';
 import './QuestionPage.scss';
 import Question from '../../components/Question/Question';
-import Button from '../../components/Button/Button';
 import { useSelector } from 'react-redux';
 import {
   nextQuestion,
@@ -47,14 +46,18 @@ const QuestionPage = () => {
       {questionList && questionNumber()}
       {!areQuestionsLoading && <Question question={currentQuestion} />}
       <div className='navigation-buttons'>
-        <Button onClick={handlePrevious} isDisabled={!(questionIndex > 0)}>
+        <button
+          className='button'
+          onClick={handlePrevious}
+          disabled={!(questionIndex > 0)}>
           Previous
-        </Button>
-        <Button
+        </button>
+        <button
+          className='button'
           onClick={handleNext}
-          isDisabled={!(questionIndex < questionList.length - 1)}>
+          disabled={!(questionIndex < questionList.length - 1)}>
           Next
-        </Button>
+        </button>
       </div>
       <p className='score'>{`Score: ${userScore || 0}`}</p>
     </div>
