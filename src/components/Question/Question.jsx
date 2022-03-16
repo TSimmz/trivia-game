@@ -52,13 +52,6 @@ const Question = ({ question }) => {
       </p>
       <h1>{question.question}</h1>
       {renderAnswers()}
-      <p
-        className={`answer ${
-          question.isUserCorrect ? 'correct' : 'incorrect'
-        }`}>
-        {question.userChoice.text &&
-          (question.isUserCorrect ? 'Correct!' : 'Incorrect!')}
-      </p>
     </div>
   );
 };

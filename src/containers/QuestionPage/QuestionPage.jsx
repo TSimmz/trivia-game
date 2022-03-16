@@ -48,6 +48,13 @@ const QuestionPage = () => {
     <div className='question-page'>
       {questionList && questionNumber()}
       <Question question={currentQuestion} />
+      <p
+        className={`answer ${
+          currentQuestion.isUserCorrect ? 'correct' : 'incorrect'
+        }`}>
+        {currentQuestion.userChoice.text &&
+          (currentQuestion.isUserCorrect ? 'Correct!' : 'Incorrect!')}
+      </p>
       <div className='navigation-buttons'>
         <button
           className='button'

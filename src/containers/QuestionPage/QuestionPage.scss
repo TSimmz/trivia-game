@@ -17,6 +17,22 @@
     position: absolute;
   }
 
+  .answer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    align-self: center;
+    bottom: 120px;
+  }
+
+  .correct {
+    color: $correct-answer;
+  }
+
+  .incorrect {
+    color: $incorrect-answer;
+  }
+
   .navigation-buttons {
     align-self: center;
     width: 100%;

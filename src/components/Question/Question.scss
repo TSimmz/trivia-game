@@ -36,22 +36,6 @@
     margin-top: 1.5rem;
   }
 
-  .answer {
-    font-size: 1.5rem;
-    font-weight: bold;
-    position: absolute;
-    align-self: center;
-    bottom: -110px;
-  }
-
-  .correct {
-    color: $correct-answer;
-  }
-
-  .incorrect {
-    color: $incorrect-answer;
-  }
-
   .answer-button {
     width: 100%;
     text-align: left;
