@@ -15,14 +15,9 @@ export const userSlice = createSlice({
     addToTotalScore: (state, action) => {
       state.totalScore += action.payload;
     },
-    addToScoreMed: (state) => {
-      state.currentScore += 2;
-    },
-    addToScoreHard: (state) => {
-      state.currentScore += 3;
-    },
     clearScore: (state) => {
       state.currentScore = 0;
+      state.totalScore = 0;
     },
     setGameProgress: (state, action) => {
       state.isGameInProgress = action.payload;

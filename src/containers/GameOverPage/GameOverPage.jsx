@@ -1,9 +1,13 @@
 import React from 'react';
 import './GameOverPage.scss';
 import { useSelector, useDispatch } from 'react-redux';
+import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
 import {
+  clearScore,
   selectCurrentScore,
   selectTotalScore,
+  setGameProgress,
+  setGameFinish,
 } from '../../features/User/userSlice';
 
 const GameOverPage = () => {
@@ -13,6 +17,10 @@ const GameOverPage = () => {
 
   const handlePlayAgain = (event) => {
     event.preventDefault();
+    dispatch(clearScore());
+    dispatch(setGameProgress(true));
+    dispatch(setGameFinish(false));
+    dispatch(getQuestionListFetch());
   };
 
   const handleSaveScore = (event) => {

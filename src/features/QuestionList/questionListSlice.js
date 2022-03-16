@@ -24,6 +24,7 @@ export const questionListSlice = createSlice({
     getQuestionListFetch: (state) => {
       state.isLoading = true;
       state.hasLoadingError = false;
+      state.currentQuestionIndex = 0;
     },
     getQuestionListSuccess: (state, action) => {
       state.isLoading = false;
