@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Question.scss';
-import AnswerCard from './AnswerCard/AnswerCard';
-import { replaceHtmlCharacters } from './helpers/utils';
+import { replaceHtmlCharacters } from '../../helpers/utils';
 
 const Question = ({ question }) => {
   const [selectedAnswer, setSelectedAnswer] = useState({});
@@ -12,31 +11,37 @@ const Question = ({ question }) => {
     setIsQuestionAnswered(false);
   }, [question]);
 
-  const handleAnswerClick = (answer) => {
-    setSelectedAnswer(answer);
-    setIsQuestionAnswered(true);
-    setIsAnswerCorrect(answer.correct);
+  const handleAnswerClick = (event) => {
+    event.preventDefault();
+
+    // setSelectedAnswer(answer);
+    // setIsQuestionAnswered(true);
+    // setIsAnswerCorrect(answer.correct);
   };
 
   const renderAnswers = () => {
     return question.answers.map((answer) => {
       if (selectedAnswer && selectedAnswer.text === answer.text) {
         return (
-          <AnswerCard
+          <button
+            id={answer.text}
             key={answer.text}
-            answer={answer}
-            background={`${answer.correct ? 'correct-bkgd' : 'incorrect-bkgd'}`}
-            handleAnswerClick={handleAnswerClick}
-          />
+            className={`answer-button ${
+              answer.correct ? 'correct-bkgd' : 'incorrect-bkgd'
+            }`}
+            onClick={handleAnswerClick}>
+            {answer.text}
+          </button>
         );
       }
       return (
-        <AnswerCard
+        <button
+          id={answer.text}
           key={answer.text}
-          answer={answer}
-          background={''}
-          handleAnswerClick={handleAnswerClick}
-        />
+          className='answer-button'
+          onClick={handleAnswerClick}>
+          {answer.text}
+        </button>
       );
     });
   };
@@ -51,7 +56,7 @@ const Question = ({ question }) => {
         <span className='green-text bold-text'>Difficulty:</span>{' '}
         {question.difficulty.toUpperCase()}
       </p>
-      <h1>{replaceHtmlCharacters(question.question)}</h1>
+      <h1>{question.question}</h1>
       {renderAnswers()}
       <p className={`answer ${isAnswerCorrect ? 'correct' : 'incorrect'}`}>
         {isQuestionAnswered && (isAnswerCorrect ? 'Correct!' : 'Incorrect!')}

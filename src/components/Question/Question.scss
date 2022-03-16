@@ -51,4 +51,23 @@
   .incorrect {
     color: $incorrect-answer;
   }
+
+  .answer-button {
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    padding: 0.9rem;
+    color: $light-color;
+    background-color: $card-background;
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+
+  .correct-bkgd {
+    background-color: $correct-answer;
+  }
+
+  .incorrect-bkgd {
+    background-color: $incorrect-answer;
+  }
 }
