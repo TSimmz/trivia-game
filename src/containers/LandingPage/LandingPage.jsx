@@ -27,7 +27,7 @@ const LandingPage = () => {
         Get questions from all sorts of categories and difficulties. Shoot for
         the high score and compare against other players!
       </p>
-      <button className='button' onClick={handlePlayButton}>
+      <button className='button play' onClick={handlePlayButton}>
         Play!
       </button>
     </div>
