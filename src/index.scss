@@ -46,3 +46,8 @@ button {
   font-family: 'Poppins', 'sans-serif';
   font-weight: bold;
 }
+
+.button:disabled {
+  color: $dark-disabled;
+  background-color: $light-green-disabled;
+}
