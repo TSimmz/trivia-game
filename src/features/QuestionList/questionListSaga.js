@@ -14,7 +14,7 @@ function* workGetQuestionListFetch() {
   let questions = [];
 
   if (questionListJson) {
-    questions = questionListJson.results.map((question) => {
+    questions = questionListJson.results.map((question, index) => {
       const incorrectAnswers = question.incorrect_answers.map((answer) => ({
         text: replaceHtmlCharacters(answer),
         correct: false,
@@ -30,11 +30,14 @@ function* workGetQuestionListFetch() {
       const answers = randomizeAnswers([...incorrectAnswers, correctAnswer]);
 
       return {
+        id: index,
         category: question.category,
         difficulty: question.difficulty,
         type: question.type,
         question: replaceHtmlCharacters(question.question),
         answers: answers,
+        userChoice: {},
+        isUserCorrect: false,
       };
     });
   }

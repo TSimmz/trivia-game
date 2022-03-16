@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Question.scss';
-import { replaceHtmlCharacters } from '../../helpers/utils';
 
 const Question = ({ question }) => {
   const [selectedAnswer, setSelectedAnswer] = useState({});

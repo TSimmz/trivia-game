@@ -6,6 +6,7 @@ import {
   nextQuestion,
   previousQuestion,
   selectAreQuestionsLoading,
+  selectCurrentQuestion,
   selectCurrentQuestionIndex,
   selectQuestionList,
 } from '../../features/QuestionList/questionListSlice';
@@ -18,8 +19,7 @@ const QuestionPage = () => {
 
   const questionList = useSelector(selectQuestionList);
   const questionIndex = useSelector(selectCurrentQuestionIndex);
-
-  let currentQuestion = questionList[questionIndex];
+  const currentQuestion = useSelector(selectCurrentQuestion);
 
   const userScore = useSelector(selectCurrentScore);
   const areQuestionsLoading = useSelector(selectAreQuestionsLoading);

@@ -5,7 +5,6 @@ export const questionListSlice = createSlice({
   initialState: {
     questions: [],
     currentQuestionIndex: 0,
-    currentQuestion: {},
     isLoading: false,
     hasLoadingError: false,
   },
