@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import GameOverPage from '../../containers/GameOverPage/GameOverPage';
 import LandingPage from '../../containers/LandingPage/LandingPage';
 import QuestionPage from '../../containers/QuestionPage/QuestionPage';
 import {
@@ -13,6 +14,7 @@ const App = () => {
 
   const renderGame = () => {
     if (isGameInProgress && !isGameFinished) return <QuestionPage />;
+    if (!isGameInProgress && isGameFinished) return <GameOverPage />;
 
     return <LandingPage />;
   };

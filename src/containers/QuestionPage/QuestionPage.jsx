@@ -10,7 +10,11 @@ import {
   selectCurrentQuestionIndex,
   selectQuestionList,
 } from '../../features/QuestionList/questionListSlice';
-import { selectCurrentScore } from '../../features/User/userSlice';
+import {
+  selectCurrentScore,
+  setGameProgress,
+  setGameFinish,
+} from '../../features/User/userSlice';
 import { useDispatch } from 'react-redux';
 import Loading from '../../components/Loading/Loading';
 
@@ -42,6 +46,12 @@ const QuestionPage = () => {
     if (questionIndex < questionList.length - 1) dispatch(nextQuestion());
   };
 
+  const handleFinish = (event) => {
+    event.preventDefault();
+    dispatch(setGameProgress(false));
+    dispatch(setGameFinish(true));
+  };
+
   return areQuestionsLoading ? (
     <Loading />
   ) : (
@@ -62,15 +72,24 @@ const QuestionPage = () => {
           disabled={!(questionIndex > 0)}>
           Previous
         </button>
-        <button
-          className='button'
-          onClick={handleNext}
-          disabled={
-            !(questionIndex < questionList.length - 1) ||
-            !currentQuestion.userChoice.text
-          }>
-          Next
-        </button>
+        {questionIndex + 1 !== questionList.length ? (
+          <button
+            className='button'
+            onClick={handleNext}
+            disabled={
+              !(questionIndex < questionList.length - 1) ||
+              !currentQuestion.userChoice.text
+            }>
+            Next
+          </button>
+        ) : (
+          <button
+            className='button'
+            onClick={handleFinish}
+            disabled={!currentQuestion.userChoice.text}>
+            Finish!
+          </button>
+        )}
       </div>
       <p className='score'>{`Score: ${userScore || 0}`}</p>
     </div>
