@@ -11,6 +11,7 @@ import {
 } from '../../features/QuestionList/questionListSlice';
 import { selectCurrentScore } from '../../features/User/userSlice';
 import { useDispatch } from 'react-redux';
+import Loading from '../../components/Loading/Loading';
 
 const QuestionPage = () => {
   const dispatch = useDispatch();
@@ -41,10 +42,12 @@ const QuestionPage = () => {
     if (questionIndex < questionList.length - 1) dispatch(nextQuestion());
   };
 
-  return (
+  return areQuestionsLoading ? (
+    <Loading />
+  ) : (
     <div className='question-page'>
       {questionList && questionNumber()}
-      {!areQuestionsLoading && <Question question={currentQuestion} />}
+      <Question question={currentQuestion} />
       <div className='navigation-buttons'>
         <button
           className='button'

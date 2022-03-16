@@ -1,9 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getQuestionListSuccess } from './questionListSlice';
-import {
-  randomizeAnswers,
-  replaceHtmlCharacters,
-} from '../../components/Question/helpers/utils';
+import { randomizeAnswers, replaceHtmlCharacters } from '../../helpers/utils';
 
 // Handler saga
 function* workGetQuestionListFetch() {
@@ -35,8 +32,8 @@ function* workGetQuestionListFetch() {
       return {
         category: question.category,
         difficulty: question.difficulty,
-        type: replaceHtmlCharacters(question.type),
-        question: question.question,
+        type: question.type,
+        question: replaceHtmlCharacters(question.question),
         answers: answers,
       };
     });
