@@ -52,6 +52,8 @@
       padding: 1.5rem;
       background-color: $card-background;
       border-radius: 10px;
+      outline: 3px solid $light-green;
+      outline-offset: 3px;
 
       .close-modal {
         width: 1.5rem;
@@ -93,6 +95,11 @@
         color: $dark-color;
         background-color: $light-color;
         margin-bottom: 1rem;
+
+        &:focus {
+          outline: 2px solid $light-green;
+          outline-offset: 2px;
+        }
       }
 
       button {
