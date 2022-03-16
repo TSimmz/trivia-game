@@ -9,6 +9,8 @@ import {
   selectTotalScore,
   setGameProgress,
   setGameFinish,
+  clearUsername,
+  clearPassword,
 } from '../../features/User/userSlice';
 import {
   selectUsername,
@@ -43,6 +45,8 @@ const GameOverPage = () => {
   const handleCloseModal = (event) => {
     event.preventDefault();
     setIsModalOpen(false);
+    dispatch(clearUsername());
+    dispatch(clearPassword());
   };
 
   const handlePlayAgain = (event) => {
