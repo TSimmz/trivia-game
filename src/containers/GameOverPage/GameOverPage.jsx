@@ -19,6 +19,7 @@ import {
   setPassword,
 } from '../../features/User/userSlice';
 import { signupUser } from '../../config/auth';
+import { addDocument } from '../../config/db';
 
 const GameOverPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +40,12 @@ const GameOverPage = () => {
     dispatch(setPassword(event.target.value));
   };
 
-  const handleLogin = () => {};
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log('Saving score...');
+    const doc = await addDocument(username, userScore, totalScore);
+    console.log(doc);
+  };
 
   const handleSignup = async (event) => {
     event.preventDefault();
