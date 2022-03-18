@@ -1,9 +1,4 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  // signInWithEmailAndPassword,
-} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAJ_J-fEaVUMbYTuGqwYe8tvZ3Zb1xQeJ0',
@@ -16,29 +11,4 @@ const firebaseConfig = {
   measurementId: 'G-BPMSKH3ZD0',
 };
 
-export const signupUser = async (email, password) => {
-  const firebase = initializeApp(firebaseConfig);
-  const auth = getAuth(firebase);
-  const user = await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(`Successfully created user: ${user.email}`);
-      return user;
-    })
-    .catch((error) => {
-      console.log(`${error.code}: ${error.message}`);
-    });
-
-  return user;
-};
-
-// export const loginUser = async (email, password) => {
-//   await signInWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//       const user = userCredential.user;
-//       console.log(`Successfully signed in user: ${JSON.stringify(user)}`);
-//     })
-//     .catch((error) => {
-//       console.log(`${error.code}: ${error.message}`);
-//     });
-// };
+export const firebase = initializeApp(firebaseConfig);

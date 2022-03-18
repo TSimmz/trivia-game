@@ -18,7 +18,7 @@ import {
   setUsername,
   setPassword,
 } from '../../features/User/userSlice';
-import { signupUser } from '../../config/firebase';
+import { signupUser } from '../../config/auth';
 
 const GameOverPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
