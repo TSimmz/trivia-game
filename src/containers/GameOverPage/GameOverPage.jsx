@@ -18,6 +18,7 @@ import {
   setUsername,
   setPassword,
 } from '../../features/User/userSlice';
+import { signupUser } from '../../config/firebase';
 
 const GameOverPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +41,12 @@ const GameOverPage = () => {
 
   const handleLogin = () => {};
 
-  const handleSignup = () => {};
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    console.log('Attempting signup...');
+    const user = await signupUser(username, password);
+    console.log(user);
+  };
 
   const handleCloseModal = (event) => {
     event.preventDefault();
