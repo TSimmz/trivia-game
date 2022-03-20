@@ -1,14 +1,14 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAJ_J-fEaVUMbYTuGqwYe8tvZ3Zb1xQeJ0',
-  authDomain: 'trivia-game-9adb8.firebaseapp.com',
-  databaseURL: 'https://trivia-game-9adb8-default-rtdb.firebaseio.com/',
-  projectId: 'trivia-game-9adb8',
-  storageBucket: 'trivia-game-9adb8.appspot.com',
-  messagingSenderId: '361576782282',
-  appId: '1:361576782282:web:5719fa68821587f1821733',
-  measurementId: 'G-BPMSKH3ZD0',
+  apiKey: process.env.REACT_APP_FIREBASE_API,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH,
+  databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SEND_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASURE_ID,
 };
 
 export const firebase = initializeApp(firebaseConfig);
