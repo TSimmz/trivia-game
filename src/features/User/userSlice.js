@@ -4,6 +4,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     username: '',
+    email: '',
     password: '',
     currentScore: 0,
     totalScore: 0,
@@ -16,6 +17,12 @@ export const userSlice = createSlice({
     },
     clearUsername: (state) => {
       state.username = '';
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    },
+    clearEmail: (state) => {
+      state.email = '';
     },
     setPassword: (state, action) => {
       state.password = action.payload;
@@ -45,6 +52,8 @@ export const userSlice = createSlice({
 export const {
   setUsername,
   clearUsername,
+  setEmail,
+  clearEmail,
   setPassword,
   clearPassword,
   addToUserScore,
@@ -55,6 +64,7 @@ export const {
 } = userSlice.actions;
 
 export const selectUsername = (state) => state.user.username;
+export const selectEmail = (state) => state.user.email;
 export const selectPassword = (state) => state.user.password;
 export const selectCurrentScore = (state) => state.user.currentScore;
 export const selectTotalScore = (state) => state.user.totalScore;
