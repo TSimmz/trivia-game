@@ -2,7 +2,7 @@ import React from 'react';
 import './LandingPage.scss';
 import { useDispatch } from 'react-redux';
 import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
-import { setGameProgress } from '../../features/User/userSlice';
+import { setGameInProgress } from '../../features/Game/gameSlice';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const LandingPage = () => {
   const handlePlayButton = (event) => {
     event.preventDefault();
     dispatch(getQuestionListFetch());
-    dispatch(setGameProgress(true));
+    dispatch(setGameInProgress(true));
   };
 
   return (
