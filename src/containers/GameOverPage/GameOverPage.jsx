@@ -17,7 +17,7 @@ import {
   setPassword,
   clearUsername,
   clearPassword,
-} from '../../features/User/userSlice';
+} from '../../features/Login/loginSlice';
 import { signupUser } from '../../config/auth';
 import { addDocument } from '../../config/db';
 
