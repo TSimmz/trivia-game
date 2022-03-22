@@ -5,7 +5,7 @@ import QuestionPage from '../../containers/QuestionPage/QuestionPage';
 import {
   selectIsGameFinish,
   selectIsGameProgress,
-} from '../../features/Game/gameSlice';
+} from '../../features/User/userSlice';
 import './App.scss';
 
 const App = () => {

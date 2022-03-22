@@ -2,7 +2,7 @@ import React from 'react';
 import './LandingPage.scss';
 import { useDispatch } from 'react-redux';
 import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
-import { setGameProgress } from '../../features/Game/gameSlice';
+import { setGameProgress } from '../../features/User/userSlice';
 
 const LandingPage = () => {
   const dispatch = useDispatch();

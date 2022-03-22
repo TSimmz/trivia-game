@@ -9,15 +9,15 @@ import {
   selectTotalScore,
   setGameProgress,
   setGameFinish,
-} from '../../features/Game/gameSlice';
+  clearUsername,
+  clearPassword,
+} from '../../features/User/userSlice';
 import {
   selectUsername,
   selectPassword,
   setUsername,
   setPassword,
-  clearUsername,
-  clearPassword,
-} from '../../features/Login/loginSlice';
+} from '../../features/User/userSlice';
 import { signupUser } from '../../config/auth';
 import { addDocument } from '../../config/db';
 

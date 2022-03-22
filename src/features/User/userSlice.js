@@ -3,51 +3,72 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: {},
-    isLoginLoading: false,
-    hasLoginError: false,
-    isSignupLoading: false,
-    hasSignupError: false,
+    username: '',
+    email: '',
+    password: '',
+    currentScore: 0,
+    totalScore: 0,
+    isGameInProgress: false,
+    isGameFinished: false,
   },
   reducers: {
-    getLoginUserFetch: (state) => {
-      state.isLoginLoading = true;
-      state.hasLoginError = false;
+    setUsername: (state, action) => {
+      state.username = action.payload;
     },
-    getLoginUserSuccess: (state, action) => {
-      state.isLoginLoading = false;
-      state.hasLoginError = false;
-      state.user = action.payload;
+    clearUsername: (state) => {
+      state.username = '';
     },
-    getLoginUserFailure: (state) => {
-      state.isLoginLoading = false;
-      state.hasLoginError = true;
+    setEmail: (state, action) => {
+      state.email = action.payload;
     },
-    getSignupUserFetch: (state) => {
-      state.isSignupLoading = true;
-      state.hasSignupError = false;
+    clearEmail: (state) => {
+      state.email = '';
     },
-    getSignupUserSuccess: (state, action) => {
-      state.isSignupLoading = true;
-      state.hasSignupError = false;
-      state.user = action.payload;
+    setPassword: (state, action) => {
+      state.password = action.payload;
     },
-    getSignupUserFailure: (state) => {
-      state.isSignupLoading = false;
-      state.hasSignupError = true;
+    clearPassword: (state) => {
+      state.password = '';
+    },
+    addToUserScore: (state, action) => {
+      state.currentScore += action.payload;
+    },
+    addToTotalScore: (state, action) => {
+      state.totalScore += action.payload;
+    },
+    clearScore: (state) => {
+      state.currentScore = 0;
+      state.totalScore = 0;
+    },
+    setGameProgress: (state, action) => {
+      state.isGameInProgress = action.payload;
+    },
+    setGameFinish: (state, action) => {
+      state.isGameFinished = action.payload;
     },
   },
 });
 
 export const {
-  getLoginUserFetch,
-  getLoginUserSuccess,
-  getLoginUserFailure,
-  getSignupUserFetch,
-  getSignupUserSuccess,
-  getSignupUserFailure,
+  setUsername,
+  clearUsername,
+  setEmail,
+  clearEmail,
+  setPassword,
+  clearPassword,
+  addToUserScore,
+  addToTotalScore,
+  clearScore,
+  setGameProgress,
+  setGameFinish,
 } = userSlice.actions;
 
-export const selectUser = (state) => state.user;
+export const selectUsername = (state) => state.user.username;
+export const selectEmail = (state) => state.user.email;
+export const selectPassword = (state) => state.user.password;
+export const selectCurrentScore = (state) => state.user.currentScore;
+export const selectTotalScore = (state) => state.user.totalScore;
+export const selectIsGameProgress = (state) => state.user.isGameInProgress;
+export const selectIsGameFinish = (state) => state.user.isGameFinished;
 
 export default userSlice.reducer;
