@@ -1,4 +1,5 @@
 import userReducer from '../../features/User/userSlice';
+import gameReducer from '../../features/Game/gameSlice';
 import questionListSlice from '../../features/QuestionList/questionListSlice';
 import questionListSaga from '../../features/QuestionList/questionListSaga';
 
@@ -12,6 +13,7 @@ const saga = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     user: userReducer,
+    game: gameReducer,
     questionList: questionListSlice,
   },
   middleware: [saga],

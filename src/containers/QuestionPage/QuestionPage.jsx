@@ -12,9 +12,9 @@ import {
 } from '../../features/QuestionList/questionListSlice';
 import {
   selectCurrentScore,
-  setGameProgress,
+  setGameInProgress,
   setGameFinish,
-} from '../../features/User/userSlice';
+} from '../../features/Game/gameSlice';
 import { useDispatch } from 'react-redux';
 import Loading from '../../components/Loading/Loading';
 
@@ -48,7 +48,7 @@ const QuestionPage = () => {
 
   const handleFinish = (event) => {
     event.preventDefault();
-    dispatch(setGameProgress(false));
+    dispatch(setGameInProgress(false));
     dispatch(setGameFinish(true));
   };
 

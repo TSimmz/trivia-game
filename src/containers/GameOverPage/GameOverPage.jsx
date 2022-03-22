@@ -7,16 +7,16 @@ import {
   clearScore,
   selectCurrentScore,
   selectTotalScore,
-  setGameProgress,
+  setGameInProgress,
   setGameFinish,
-  clearUsername,
-  clearPassword,
-} from '../../features/User/userSlice';
+} from '../../features/Game/gameSlice';
 import {
   selectUsername,
   selectPassword,
   setUsername,
   setPassword,
+  clearUsername,
+  clearPassword,
 } from '../../features/User/userSlice';
 import { signupUser } from '../../config/auth';
 import { addDocument } from '../../config/db';
@@ -64,7 +64,7 @@ const GameOverPage = () => {
   const handlePlayAgain = (event) => {
     event.preventDefault();
     dispatch(clearScore());
-    dispatch(setGameProgress(true));
+    dispatch(setGameInProgress(true));
     dispatch(setGameFinish(false));
     dispatch(getQuestionListFetch());
   };
