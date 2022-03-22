@@ -12,13 +12,16 @@ import {
 } from 'features/Game/gameSlice';
 import {
   selectUsername,
+  selectEmail,
   selectPassword,
   setUsername,
+  setEmail,
   setPassword,
   clearUsername,
   clearPassword,
+  clearEmail,
 } from 'features/Login/loginSlice';
-import { signupUser } from 'config/auth';
+import { getSignupUserFetch } from 'features/User/userSlice';
 import { addDocument } from 'config/db';
 
 const GameOverPage = () => {
@@ -26,6 +29,7 @@ const GameOverPage = () => {
 
   const dispatch = useDispatch();
   const username = useSelector(selectUsername);
+  const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
   const userScore = useSelector(selectCurrentScore);
   const totalScore = useSelector(selectTotalScore);
@@ -34,6 +38,10 @@ const GameOverPage = () => {
 
   const handleUsernameChange = (event) => {
     dispatch(setUsername(event.target.value));
+  };
+
+  const handleEmailChange = (event) => {
+    dispatch(setEmail(event.target.value));
   };
 
   const handlePasswordChange = (event) => {
@@ -58,6 +66,7 @@ const GameOverPage = () => {
     event.preventDefault();
     setIsModalOpen(false);
     dispatch(clearUsername());
+    dispatch(clearEmail());
     dispatch(clearPassword());
   };
 
@@ -103,6 +112,11 @@ const GameOverPage = () => {
               placeholder='Username'
               value={username}
               onChange={handleUsernameChange}></input>
+            <input
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={handleEmailChange}></input>
             <input
               type='password'
               placeholder='Password'
