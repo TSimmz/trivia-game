@@ -3,47 +3,55 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    username: '',
-    email: '',
-    password: '',
-    currentScore: 0,
-    totalScore: 0,
-    isGameInProgress: false,
-    isGameFinished: false,
+    user: {},
+    isLoginLoading: false,
+    hasLoginError: false,
+    isSignupLoading: false,
+    hasSignupError: false,
   },
   reducers: {
-    setUsername: (state, action) => {
-      state.username = action.payload;
+    getLoginUserFetch: (state) => {
+      state.isLoginLoading = true;
+      state.hasLoginError = false;
     },
-    clearUsername: (state) => {
-      state.username = '';
+    getLoginUserSuccess: (state, action) => {
+      state.isLoginLoading = false;
+      state.hasLoginError = false;
+      state.user = action.payload;
     },
-    setEmail: (state, action) => {
-      state.email = action.payload;
+    getLoginUserFailure: (state) => {
+      state.isLoginLoading = false;
+      state.hasLoginError = true;
     },
-    clearEmail: (state) => {
-      state.email = '';
+    getSignupUserFetch: (state) => {
+      state.isSignupLoading = true;
+      state.hasSignupError = false;
     },
-    setPassword: (state, action) => {
-      state.password = action.payload;
+    getSignupUserSuccess: (state, action) => {
+      state.isSignupLoading = true;
+      state.hasSignupError = false;
+      state.user = action.payload;
     },
-    clearPassword: (state) => {
-      state.password = '';
+    getSignupUserFailure: (state) => {
+      state.isSignupLoading = false;
+      state.hasSignupError = true;
     },
   },
 });
 
 export const {
-  setUsername,
-  clearUsername,
-  setEmail,
-  clearEmail,
-  setPassword,
-  clearPassword,
+  getLoginUserFetch,
+  getLoginUserSuccess,
+  getLoginUserFailure,
+  getSignupUserFetch,
+  getSignupUserSuccess,
+  getSignupUserFailure,
 } = userSlice.actions;
 
-export const selectUsername = (state) => state.user.username;
-export const selectEmail = (state) => state.user.email;
-export const selectPassword = (state) => state.user.password;
+export const selectUser = (state) => state.user.user;
+export const selectIsLoginLoading = (state) => state.user.isLoginLoading;
+export const selectHasLoginError = (state) => state.user.hasLoginError;
+export const selectIsSignupLoading = (state) => state.user.isSignupLoading;
+export const selectHasSignupError = (state) => state.user.hasSignupError;
 
 export default userSlice.reducer;
