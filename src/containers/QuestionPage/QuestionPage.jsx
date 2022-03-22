@@ -14,7 +14,7 @@ import {
   selectCurrentScore,
   setGameProgress,
   setGameFinish,
-} from '../../features/User/userSlice';
+} from '../../features/Game/gameSlice';
 import { useDispatch } from 'react-redux';
 import Loading from '../../components/Loading/Loading';
 

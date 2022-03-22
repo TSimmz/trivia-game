@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCurrentQuestion } from '../../features/QuestionList/questionListSlice';
-import { addToUserScore, addToTotalScore } from '../../features/User/userSlice';
+import { addToUserScore, addToTotalScore } from '../../features/Game/gameSlice';
 import './Question.scss';
 
 const Question = ({ question }) => {
