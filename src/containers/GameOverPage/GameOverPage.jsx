@@ -57,9 +57,8 @@ const GameOverPage = () => {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    console.log('Attempting signup...');
-    const user = await signupUser(username, password);
-    console.log(user);
+    const user = { username, email, password };
+    dispatch(getSignupUserFetch(user));
   };
 
   const handleCloseModal = (event) => {

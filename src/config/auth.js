@@ -3,15 +3,25 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 
 const auth = getAuth(firebase);
 
-export const signupUser = async (email, password) => {
-  const user = await createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(`Successfully created user: ${user.email}`);
+export const isCurrentUser = auth.currentUser !== undefined;
+
+export const signupUser = async (username, email, password) => {
+  console.log('Creating user...');
+  const response = await createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      console.log('Updating username...');
+      return updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+    })
+    .then(() => {
+      const user = auth.currentUser;
+      console.log(`Successfully created user: ${user.displayName}`);
       return user;
     })
     .catch((error) => {
@@ -19,14 +29,14 @@ export const signupUser = async (email, password) => {
       return error.code;
     });
 
-  return user;
+  return response;
 };
 
 export const loginUser = async (email, password) => {
-  const user = await signInWithEmailAndPassword(auth, email, password)
+  const response = await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(`Successfully signed in user: ${user.email}`);
+      console.log(`Successfully signed in user: ${user.displayName}`);
       return user;
     })
     .catch((error) => {
@@ -34,5 +44,5 @@ export const loginUser = async (email, password) => {
       return error.code;
     });
 
-  return user;
+  return response;
 };
