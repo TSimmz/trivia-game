@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuestionPage.scss';
-import Question from '../../components/Question/Question';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Question from 'components/Question/Question';
 import {
   nextQuestion,
   previousQuestion,
@@ -9,14 +9,13 @@ import {
   selectCurrentQuestion,
   selectCurrentQuestionIndex,
   selectQuestionList,
-} from '../../features/QuestionList/questionListSlice';
+} from 'features/QuestionList/questionListSlice';
 import {
   selectCurrentScore,
   setGameInProgress,
   setGameFinish,
-} from '../../features/Game/gameSlice';
-import { useDispatch } from 'react-redux';
-import Loading from '../../components/Loading/Loading';
+} from 'features/Game/gameSlice';
+import Loading from 'components/Loading/Loading';
 
 const QuestionPage = () => {
   const dispatch = useDispatch();

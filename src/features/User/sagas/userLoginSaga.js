@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { loginUser } from 'src/config/auth';
+import { loginUser } from 'config/auth';
 
 function* workUserLoginFetch(loginData) {
   const { username, email, password } = loginData;

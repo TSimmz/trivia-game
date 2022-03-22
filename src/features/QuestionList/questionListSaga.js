@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getQuestionListSuccess } from './questionListSlice';
-import { randomizeAnswers, replaceHtmlCharacters } from '../../helpers/utils';
+import { randomizeAnswers, replaceHtmlCharacters } from 'helpers/utils';
 
 // Handler saga
 function* workGetQuestionListFetch() {

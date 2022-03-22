@@ -1,8 +1,8 @@
 import React from 'react';
 import './LandingPage.scss';
 import { useDispatch } from 'react-redux';
-import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
-import { setGameInProgress } from '../../features/Game/gameSlice';
+import { getQuestionListFetch } from 'features/QuestionList/questionListSlice';
+import { setGameInProgress } from 'features/Game/gameSlice';
 
 const LandingPage = () => {
   const dispatch = useDispatch();

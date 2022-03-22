@@ -1,6 +1,6 @@
 import React from 'react';
 import './Loading.scss';
-import loading from '../../assets/loading.svg';
+import loading from 'assets/loading.svg';
 
 const Loading = () => {
   return (

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './GameOverPage.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import closeIcon from '../../assets/close.svg';
-import { getQuestionListFetch } from '../../features/QuestionList/questionListSlice';
+import closeIcon from 'assets/close.svg';
+import { getQuestionListFetch } from 'features/QuestionList/questionListSlice';
 import {
   clearScore,
   selectCurrentScore,
   selectTotalScore,
   setGameInProgress,
   setGameFinish,
-} from '../../features/Game/gameSlice';
+} from 'features/Game/gameSlice';
 import {
   selectUsername,
   selectPassword,
@@ -17,9 +17,9 @@ import {
   setPassword,
   clearUsername,
   clearPassword,
-} from '../../features/Login/loginSlice';
-import { signupUser } from '../../config/auth';
-import { addDocument } from '../../config/db';
+} from 'features/Login/loginSlice';
+import { signupUser } from 'config/auth';
+import { addDocument } from 'config/db';
 
 const GameOverPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
