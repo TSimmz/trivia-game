@@ -1,88 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './GameOverPage.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import closeIcon from 'assets/close.svg';
 import { getQuestionListFetch } from 'features/QuestionList/questionListSlice';
 import {
-  clearScore,
   selectCurrentScore,
   selectTotalScore,
-  setGameInProgress,
-  setGameFinish,
+  playGameAgain,
 } from 'features/Game/gameSlice';
-import {
-  selectUsername,
-  selectEmail,
-  selectPassword,
-  setUsername,
-  setEmail,
-  setPassword,
-  clearUsername,
-  clearPassword,
-  clearEmail,
-} from 'features/Login/loginSlice';
-import { getSignupUserFetch } from 'features/User/userSlice';
-import { addDocument } from 'config/db';
+import { selectModalOpen } from 'features/Modal/modalSlice';
+import Modal from 'components/Modal/Modal';
 
 const GameOverPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const dispatch = useDispatch();
-  const username = useSelector(selectUsername);
-  const email = useSelector(selectEmail);
-  const password = useSelector(selectPassword);
   const userScore = useSelector(selectCurrentScore);
   const totalScore = useSelector(selectTotalScore);
+  const isModalOpen = useSelector(selectModalOpen);
 
-  const saveText = 'Save your score!';
-
-  const handleUsernameChange = (event) => {
-    dispatch(setUsername(event.target.value));
-  };
-
-  const handleEmailChange = (event) => {
-    dispatch(setEmail(event.target.value));
-  };
-
-  const handlePasswordChange = (event) => {
-    dispatch(setPassword(event.target.value));
-  };
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    console.log('Saving score...');
-    const doc = await addDocument(username, userScore, totalScore);
-    console.log(doc);
-  };
-
-  const handleSignup = async (event) => {
-    event.preventDefault();
-    const user = { username, email, password };
-    dispatch(getSignupUserFetch(user));
-  };
-
-  const handleCloseModal = (event) => {
-    event.preventDefault();
-    setIsModalOpen(false);
-    dispatch(clearUsername());
-    dispatch(clearEmail());
-    dispatch(clearPassword());
-  };
+  const gameOverText = 'Congratulations!';
 
   const handlePlayAgain = (event) => {
     event.preventDefault();
-    dispatch(clearScore());
-    dispatch(setGameInProgress(true));
-    dispatch(setGameFinish(false));
     dispatch(getQuestionListFetch());
+    dispatch(playGameAgain());
   };
 
   const handleSaveScore = (event) => {
     event.preventDefault();
-    setIsModalOpen(true);
+
+    // Check if user is logged in
+    // if not logged in, feed login modal
+    // if logged in, feed save score and feed high score modal
   };
 
-  const gameOverText = 'Congratulations!';
   return (
     <div className='game-over-container'>
       <h1>
@@ -99,40 +48,7 @@ const GameOverPage = () => {
       <button className='button save-button' onClick={handleSaveScore}>
         Save score
       </button>
-      {isModalOpen && (
-        <div className='save-modal'>
-          <form>
-            <button className='close-modal' onClick={handleCloseModal}>
-              <img src={closeIcon} alt='Close save modal' />
-            </button>
-            <h1>{saveText}</h1>
-            <input
-              type='text'
-              placeholder='Username'
-              value={username}
-              onChange={handleUsernameChange}></input>
-            <input
-              type='text'
-              placeholder='Email'
-              value={email}
-              onChange={handleEmailChange}></input>
-            <input
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={handlePasswordChange}></input>
-            <button
-              type='submit'
-              className='button inverted'
-              onClick={handleLogin}>
-              Login
-            </button>
-            <button type='submit' className='button' onClick={handleSignup}>
-              Sign Up
-            </button>
-          </form>
-        </div>
-      )}
+      {isModalOpen && <Modal />}
     </div>
   );
 };
