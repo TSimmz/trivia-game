@@ -51,46 +51,50 @@ const QuestionPage = () => {
     dispatch(setGameFinish(true));
   };
 
-  return areQuestionsLoading ? (
-    <Loading loadingText={'Loading questions...'} />
-  ) : (
+  return (
     <div className='question-page'>
-      {questionList && questionNumber()}
-      <Question question={currentQuestion} />
-      <p
-        className={`answer ${
-          currentQuestion.isUserCorrect ? 'correct' : 'incorrect'
-        }`}>
-        {currentQuestion.userChoice.text &&
-          (currentQuestion.isUserCorrect ? 'Correct!' : 'Incorrect!')}
-      </p>
-      <div className='navigation-buttons'>
-        <button
-          className='button'
-          onClick={handlePrevious}
-          disabled={!(questionIndex > 0)}>
-          Previous
-        </button>
-        {questionIndex + 1 !== questionList.length ? (
-          <button
-            className='button'
-            onClick={handleNext}
-            disabled={
-              !(questionIndex < questionList.length - 1) ||
-              !currentQuestion.userChoice.text
-            }>
-            Next
-          </button>
-        ) : (
-          <button
-            className='button'
-            onClick={handleFinish}
-            disabled={!currentQuestion.userChoice.text}>
-            Finish!
-          </button>
-        )}
-      </div>
-      <p className='score'>{`Score: ${userScore || 0}`}</p>
+      {areQuestionsLoading ? (
+        <Loading loadingText={'Loading questions...'} />
+      ) : (
+        <>
+          {questionList && questionNumber()}
+          <Question question={currentQuestion} />
+          <p
+            className={`answer ${
+              currentQuestion.isUserCorrect ? 'correct' : 'incorrect'
+            }`}>
+            {currentQuestion.userChoice.text &&
+              (currentQuestion.isUserCorrect ? 'Correct!' : 'Incorrect!')}
+          </p>
+          <div className='navigation-buttons'>
+            <button
+              className='button'
+              onClick={handlePrevious}
+              disabled={!(questionIndex > 0)}>
+              Previous
+            </button>
+            {questionIndex + 1 !== questionList.length ? (
+              <button
+                className='button'
+                onClick={handleNext}
+                disabled={
+                  !(questionIndex < questionList.length - 1) ||
+                  !currentQuestion.userChoice.text
+                }>
+                Next
+              </button>
+            ) : (
+              <button
+                className='button'
+                onClick={handleFinish}
+                disabled={!currentQuestion.userChoice.text}>
+                Finish!
+              </button>
+            )}
+          </div>
+          <p className='score'>{`Score: ${userScore || 0}`}</p>
+        </>
+      )}
     </div>
   );
 };

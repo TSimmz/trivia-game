@@ -28,7 +28,7 @@ export const userSlice = createSlice({
       state.hasSignupError = false;
     },
     getSignupUserSuccess: (state, action) => {
-      state.isSignupLoading = true;
+      state.isSignupLoading = false;
       state.hasSignupError = false;
       state.user = action.payload;
     },
