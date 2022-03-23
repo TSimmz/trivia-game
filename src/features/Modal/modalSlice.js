@@ -14,12 +14,30 @@ export const modalSlice = createSlice({
     setModalPage: (state, action) => {
       state.modalPage = action.payload;
     },
+    openLoginModal: (state) => {
+      state.isModalOpen = true;
+      state.modalPage = modalPages.login;
+    },
+    openSignUpModal: (state) => {
+      state.isModalOpen = true;
+      state.modalPage = modalPages.signUp;
+    },
+    openHighScoreModal: (state) => {
+      state.isModalOpen = true;
+      state.modalPage = modalPages.highScores;
+    },
   },
 });
 
-export const { setModalOpen, setModalPage } = modalSlice.actions;
+export const {
+  setModalOpen,
+  setModalPage,
+  openLoginModal,
+  openSignUpModal,
+  openHighScoreModal,
+} = modalSlice.actions;
 
-export const selectModelOpen = (state) => state.modal.isModalOpen;
+export const selectModalOpen = (state) => state.modal.isModalOpen;
 export const selectModalPage = (state) => state.modal.modalPage;
 
 export default modalSlice.reducer;
