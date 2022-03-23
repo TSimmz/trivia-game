@@ -9,6 +9,8 @@ import {
   setPassword,
   selectPassword,
 } from 'features/Login/loginSlice.js';
+import { setModalPage } from 'features/Modal/modalSlice.js';
+import modalPages from 'components/Modal/modalPages.js';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -35,6 +37,11 @@ const SignUp = () => {
     event.preventDefault();
   };
 
+  const handleLoginCta = (event) => {
+    event.preventDefault();
+    dispatch(setModalPage(modalPages.login));
+  };
+
   return (
     <>
       <form className='signup-form'>
@@ -57,6 +64,12 @@ const SignUp = () => {
           Sign Up
         </button>
       </form>
+      <p className='modal-cta'>
+        Already have an account?{' '}
+        <button type='button' onClick={handleLoginCta}>
+          Login
+        </button>
+      </p>
     </>
   );
 };

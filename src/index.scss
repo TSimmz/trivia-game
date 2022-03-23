@@ -67,6 +67,11 @@ input {
   background-color: $light-green;
   font-family: 'Poppins', 'sans-serif';
   font-weight: bold;
+
+  &:disabled {
+    color: $dark-disabled;
+    background-color: $light-green-disabled;
+  }
 }
 
 .inverted {
@@ -77,7 +82,15 @@ input {
   margin-bottom: 0.8rem;
 }
 
-.button:disabled {
-  color: $dark-disabled;
-  background-color: $light-green-disabled;
+.modal-cta {
+  font-size: 0.8rem;
+
+  button {
+    display: inline-block;
+    color: $light-green;
+    background-color: transparent;
+    font-size: inherit;
+    margin-left: 0.3rem;
+    border-radius: 2px;
+  }
 }

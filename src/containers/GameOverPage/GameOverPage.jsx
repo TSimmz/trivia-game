@@ -7,7 +7,7 @@ import {
   selectTotalScore,
   playGameAgain,
 } from 'features/Game/gameSlice';
-import { selectModalOpen } from 'features/Modal/modalSlice';
+import { selectModalOpen, openLoginModal } from 'features/Modal/modalSlice';
 import Modal from 'components/Modal/Modal';
 
 const GameOverPage = () => {
@@ -26,6 +26,7 @@ const GameOverPage = () => {
 
   const handleSaveScore = (event) => {
     event.preventDefault();
+    dispatch(openLoginModal());
 
     // Check if user is logged in
     // if not logged in, feed login modal
