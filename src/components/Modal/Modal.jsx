@@ -6,6 +6,7 @@ import modalPages from './modalPages.js';
 import closeIcon from 'assets/close.svg';
 import Login from 'components/Login/Login';
 import SignUp from 'components/SignUp/SignUp';
+import HighScores from '../HighScores/HighScores';
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const Modal = () => {
         return <Login />;
       case modalPages.signUp:
         return <SignUp />;
+      case modalPages.highScores:
+        return <HighScores />;
       default:
         break;
     }
