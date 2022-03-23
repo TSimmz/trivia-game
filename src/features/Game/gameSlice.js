@@ -25,6 +25,18 @@ export const gameSlice = createSlice({
     setGameFinish: (state, action) => {
       state.isGameFinished = action.payload;
     },
+    playGameAgain: (state) => {
+      state.currentScore = 0;
+      state.totalScore = 0;
+      state.isGameInProgress = true;
+      state.isGameFinished = false;
+    },
+    resetGame: (state) => {
+      state.currentScore = 0;
+      state.totalScore = 0;
+      state.isGameInProgress = false;
+      state.isGameFinished = false;
+    },
   },
 });
 
@@ -34,6 +46,8 @@ export const {
   clearScore,
   setGameInProgress,
   setGameFinish,
+  playGameAgain,
+  resetGame,
 } = gameSlice.actions;
 
 export const selectCurrentScore = (state) => state.game.currentScore;
