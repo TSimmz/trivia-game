@@ -1,0 +1,47 @@
+@import 'variables.scss';
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: $dark-color;
+    background-color: $light-color;
+
+    &:focus {
+      outline: 2px solid $light-green;
+      outline-offset: 2px;
+    }
+  }
+
+  button {
+    font-size: 1.3rem;
+  }
+
+  .inverted {
+    border: 3px solid $light-green;
+    color: #fff;
+    background-color: transparent;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+}
+.signup-cta {
+  font-size: 0.8rem;
+
+  button {
+    display: inline-block;
+    color: $light-green;
+    background-color: transparent;
+    font-size: inherit;
+  }
+}

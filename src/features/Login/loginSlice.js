@@ -26,6 +26,15 @@ export const loginSlice = createSlice({
     clearPassword: (state) => {
       state.password = '';
     },
+    clearLoginFields: (state) => {
+      state.email = '';
+      state.password = '';
+    },
+    clearSignupFields: (state) => {
+      state.username = '';
+      state.email = '';
+      state.password = '';
+    },
   },
 });
 
@@ -36,6 +45,8 @@ export const {
   clearEmail,
   setPassword,
   clearPassword,
+  clearLoginFields,
+  clearSignupFields,
 } = loginSlice.actions;
 
 export const selectUsername = (state) => state.login.username;
