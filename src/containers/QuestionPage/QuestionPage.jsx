@@ -52,7 +52,7 @@ const QuestionPage = () => {
   };
 
   return areQuestionsLoading ? (
-    <Loading />
+    <Loading loadingText={'Loading questions...'} />
   ) : (
     <div className='question-page'>
       {questionList && questionNumber()}
