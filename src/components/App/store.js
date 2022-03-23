@@ -6,7 +6,8 @@ import { all } from 'redux-saga/effects';
 import userReducer from 'features/User/userSlice';
 import gameReducer from 'features/Game/gameSlice';
 import loginReducer from 'features/Login/loginSlice';
-import questionListSlice from 'features/QuestionList/questionListSlice';
+import questionListReducer from 'features/QuestionList/questionListSlice';
+import modalReducer from 'features/Modal/modalSlice';
 
 //Sagas
 import questionListSaga from 'features/QuestionList/questionListSaga';
@@ -26,7 +27,8 @@ const store = configureStore({
     user: userReducer,
     game: gameReducer,
     login: loginReducer,
-    questionList: questionListSlice,
+    questionList: questionListReducer,
+    modal: modalReducer,
   },
   middleware: [saga],
 });
