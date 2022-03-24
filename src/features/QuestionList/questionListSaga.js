@@ -6,7 +6,7 @@ import { randomizeAnswers, replaceHtmlCharacters } from 'helpers/utils';
 function* workGetQuestionListFetch() {
   // Call the API
   const questionList = yield call(() =>
-    fetch('https://opentdb.com/api.php?amount=10')
+    fetch('https://opentdb.com/api.php?amount=3')
   );
 
   // Format the JSON
