@@ -33,9 +33,10 @@ export const signupUser = async (username, email, password) => {
 };
 
 export const loginUser = async (email, password) => {
+  console.log('Logging in...');
   const response = await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+    .then(() => {
+      const user = auth.currentUser;
       console.log(`Successfully signed in user: ${user.displayName}`);
       return user;
     })

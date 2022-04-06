@@ -9,11 +9,19 @@ import {
 } from 'features/Login/loginSlice.js';
 import { setModalPage } from 'features/Modal/modalSlice.js';
 import modalPages from 'components/Modal/modalPages.js';
+import Loading from 'components/Loading/Loading';
+import {
+  selectUser,
+  getLoginUserFetch,
+  selectIsLoginLoading,
+} from 'features/User/userSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
   const email = useSelector(selectEmail);
   const password = useSelector(selectPassword);
+  const isLoginLoading = useSelector(selectIsLoginLoading);
+  const user = useSelector(selectUser);
 
   const handleEmailChange = (event) => {
     event.preventDefault();
@@ -27,35 +35,70 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
+    const userPayload = { email, password };
+
+    dispatch(getLoginUserFetch(userPayload));
   };
 
   const handleSignUpCta = (event) => {
     dispatch(setModalPage(modalPages.signUp));
   };
 
+  const renderLoginLoading = () => {
+    const loadingText = 'Logging in...';
+    return isLoginLoading && <Loading loadingText={loadingText} />;
+  };
+
+  const renderLoginForm = () => {
+    return (
+      !isLoginLoading &&
+      !user.displayName && (
+        <>
+          <form className='login-form'>
+            <input
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={handleEmailChange}></input>
+            <input
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={handlePasswordChange}></input>
+            <button
+              type='submit'
+              className='button inverted'
+              onClick={handleLogin}>
+              Login
+            </button>
+          </form>
+          <p className='modal-cta'>
+            Don't have an account?{' '}
+            <button type='button' onClick={handleSignUpCta}>
+              Sign Up
+            </button>
+          </p>
+        </>
+      )
+    );
+  };
+
+  const renderLoginSuccess = () => {
+    return (
+      !isLoginLoading &&
+      user.displayName && (
+        <>
+          <h1 className='welcome'>{`Welcome back, ${user.displayName}!`}</h1>
+        </>
+      )
+    );
+  };
+
   return (
     <>
-      <form className='login-form'>
-        <input
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={handleEmailChange}></input>
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={handlePasswordChange}></input>
-        <button type='submit' className='button inverted' onClick={handleLogin}>
-          Login
-        </button>
-      </form>
-      <p className='modal-cta'>
-        Don't have an account?{' '}
-        <button type='button' onClick={handleSignUpCta}>
-          Sign Up
-        </button>
-      </p>
+      {renderLoginForm()}
+      {renderLoginLoading()}
+      {renderLoginSuccess()}
     </>
   );
 };
