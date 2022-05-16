@@ -41,6 +41,7 @@ const Login = () => {
   };
 
   const handleSignUpCta = (event) => {
+    event.preventDefault();
     dispatch(setModalPage(modalPages.signUp));
   };
 
