@@ -10,9 +10,10 @@ export const userSlice = createSlice({
     hasSignupError: false,
   },
   reducers: {
-    getLoginUserFetch: (state) => {
+    getLoginUserFetch: (state, action) => {
       state.isLoginLoading = true;
       state.hasLoginError = false;
+      // Action is used by the saga watcher in ./sagas/userLoginSaga.js
     },
     getLoginUserSuccess: (state, action) => {
       state.isLoginLoading = false;
@@ -26,7 +27,7 @@ export const userSlice = createSlice({
     getSignupUserFetch: (state, action) => {
       state.isSignupLoading = true;
       state.hasSignupError = false;
-      // Action is used by the saga watcher
+      // Action is used by the saga watcher in ./sagas/userSignupSaga.js
     },
     getSignupUserSuccess: (state, action) => {
       state.isSignupLoading = false;

@@ -12,13 +12,14 @@ import modalReducer from 'features/Modal/modalSlice';
 //Sagas
 import questionListSaga from 'features/QuestionList/questionListSaga';
 import userSignupSaga from 'features/User/sagas/userSignupSaga';
+import userLoginSaga from 'features/User/sagas/userLoginSaga';
 
 // Create the Saga
 const saga = createSagaMiddleware();
 
 // Combine sagas
 function* rootSaga() {
-  yield all([questionListSaga(), userSignupSaga()]);
+  yield all([questionListSaga(), userSignupSaga(), userLoginSaga()]);
 }
 
 // Create the store
